@@ -1,4 +1,7 @@
 # AirBnB_clone
+
+<p align="center"><img src="https://i.pinimg.com/originals/b7/96/7a/b7967a5072e088986559b57b4ba53c83.jpg"/></p>
+
 Learning Objectives
 
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
