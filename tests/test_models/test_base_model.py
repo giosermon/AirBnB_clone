@@ -13,6 +13,3 @@ class Test_Base_Model(unittest.TestCase):
 	Unittesting class
     """
 
-
-if __name__ == '__main__':
-    unittest.main()

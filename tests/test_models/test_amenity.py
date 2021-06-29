@@ -12,8 +12,3 @@ class Test_Amenity(unittest.TestCase):
     """
 	Unittesting class
     """
-
-
-
-if __name__ == '__main__':
-    unittest.main()
