@@ -38,11 +38,7 @@ class FileStorage:
             with open(self.__file_path, "r") as file:
                 content = json.load(file)
         for key, value in content.items():
-            if value['__class__'] in models.classes:
-                # ^ check if class exists within 'classes'
-                cls = models.classes[value['__class__']]
-                # ^ grabs correct class (ex. BaseModel, City...)
-                myobj = cls(**value)
-                # ^ instantiate object based on correct class...
-                # ^ passing value dictionary in as kwargs
-                self.__objects[key] = myobj
+            if value['__class__'] in models.classes:#check if class exists within 'classes'
+                cls = models.classes[value['__class__']]#grabs correct class (ex. BaseModel, City...)
+                myobj = cls(**value)#instantiate object based on correct class...
+                self.__objects[key] = myobj#passing value dictionary in as kwargs
