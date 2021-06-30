@@ -3,8 +3,13 @@
 instances to a JSON file and deserializes JSON file to instances
 """
 import json
-import models
-from os.path import exists
+from models.base_model import BaseModel
+from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 
 
 class FileStorage:
@@ -32,13 +37,15 @@ class FileStorage:
                 json.dump(empty_dict, file)
 
     def reload(self):
-        """ deserializes the JSON file to __objects """
-        content = {}
-        if exists(self.__file_path):
-            with open(self.__file_path, "r") as file:
-                content = json.load(file)
-        for key, value in content.items():
-            if value['__class__'] in models.classes:#check if class exists within 'classes'
-                cls = models.classes[value['__class__']]#grabs correct class (ex. BaseModel, City...)
-                myobj = cls(**value)#instantiate object based on correct class...
-                self.__objects[key] = myobj#passing value dictionary in as kwargs
+        """Deserializes the JSON file to __objects
+        only if the JSON file exists; otherwise, do nothing
+        """
+        try:
+            with open(FileStorage.__file_path, mode="r") as file:
+                content = (json.load(file))
+                for key, value in content.items():
+                    class_name = value.get('__class__')
+                    obj = eval(class_name + '(**value)')
+                    FileStorage.__objects[key] = obj
+        except FileNotFoundError:
+            pass
