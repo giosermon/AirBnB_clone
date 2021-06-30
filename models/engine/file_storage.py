@@ -37,9 +37,7 @@ class FileStorage:
                 json.dump(empty_dict, file)
 
     def reload(self):
-        """Deserializes the JSON file to __objects
-            only if the JSON file exists; otherwise, do nothing
-        """
+        """Deserializes the JSON file to __objects"""
         try:
             with open(FileStorage.__file_path, mode="r") as file:
                 content = (json.load(file))
