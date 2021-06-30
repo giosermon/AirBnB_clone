@@ -24,11 +24,11 @@ class BaseModel():
                 if key == "id":
                     self.id = value
                 elif key == "created_at" or key == "updated_at":
-                    datatimee = datetime.strptime(value, format_iso)
-                    setattr(self, key, datatimee)
-                elif key != "__class__":  # class should not be added as attr
-                    setattr(self, key, value)  # setting attr for other keys
-
+                    self.__dict__[key] = datetime.strptime(value, format_iso)
+                elif key is "__class__":
+                    pass
+                elif key is not "__class__":
+                    self.__dict__[key] = value
     def __str__(self):
         """ Method that override the str method and returns a specific string 
         Args: self
