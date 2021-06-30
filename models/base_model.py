@@ -31,8 +31,8 @@ class BaseModel():
 
     def __str__(self):
         """ Method that override the str method and returns a specific string 
-        Args: self
-        Return: [<class name>] (<self.id>) <self.__dict__>
+            Args: self
+            Return: [<class name>] (<self.id>) <self.__dict__>
         """
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)
@@ -44,10 +44,10 @@ class BaseModel():
         """
         self.updated_at = datetime.now()
         models.storage.save()
-    
+
     def to_dict(self):
         '''Returns a dictionary containing all keys/values
-        of __dict__ of the instance '''
+            of __dict__ of the instance '''
         my_dic = dict(self.__dict__) # make variable my_dict
         my_dic["__class__"] = self.__class__.__name__ # add class key with class name of the object
         my_dic["created_at"] = self.created_at.isoformat()
