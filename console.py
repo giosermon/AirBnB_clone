@@ -22,10 +22,8 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
 
-    """ Classes """
-    classes = {"BaseModel": BaseModel, "User": User,
-           "City": City, "Place": Place, "Review": Review,
-           "State": State, "Amenity": Amenity}
+    classes =\
+        ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
 
     def do_EOF(self, args):
         """ EOF command to exit the program """
@@ -93,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     del storage.all()[to_delete]
                     storage.save()
-                    
+
     def do_all(self, arg):
         """Prints all string representation of all instances \
             based or not on the class name
@@ -108,6 +106,7 @@ class HBNBCommand(cmd.Cmd):
         for key, value in dic.items():
             data.append(str(value))
         print(data)
+
     def do_update(self, arg):
         '''
             Update an instance based on the class name and id
