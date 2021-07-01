@@ -26,10 +26,13 @@ class BaseModel():
         - __init__(self)
         - __str__(self)
     """
+
     def __init__(self, *args, **kwargs):
+
         """
-	Initializes an instance of BaseModel class
+    Initializes an instance of BaseModel class
         """
+
         if kwargs is None or len(kwargs) == 0:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -45,23 +48,24 @@ class BaseModel():
                     pass
                 elif key is not "__class__":
                     self.__dict__[key] = value
+
     def __str__(self):
         """
-	Returns a string representation of an instance
+    Returns a string representation of an instance
         """
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)
 
     def save(self):
         """
-	Updates the public instance update_at with the current time
+    Updates the public instance update_at with the current time
         """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """
-	Returns a dictionary containing all keys/values
+        Returns a dictionary containing all keys/values
         of __dict__ of the instance
         """
         my_dic = dict(self.__dict__)
