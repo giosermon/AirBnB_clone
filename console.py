@@ -5,6 +5,7 @@ import cmd
 import json
 import models
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 from models import storage
 import shlex
 from models.user import User
@@ -92,21 +93,53 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     del storage.all()[to_delete]
                     storage.save()
-
+                    
     def do_all(self, arg):
         """Prints all string representation of all instances \
             based or not on the class name
         """
         data = []
         if arg:
-            words = arg.split()
-            if words[0] not in HBNBCommand.classes:
+            list_args = arg.split()
+            if list_args[0] not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
         dic = storage.all()
         for key, value in dic.items():
             data.append(str(value))
         print(data)
+    def do_update(self, arg):
+        '''
+            Update an instance based on the class name and id
+            sent as args.
+        '''
+        self.non_interactive_mode()
+        list_args = shlex.split(arg)
+        if not arg:
+            print("** class name missing **")
+            return
+        elif list_args[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+        elif list_args[0] in HBNBCommand.classes and len(list_args) == 1:
+            print("** instance id missing **")
+            return
+        elif len(list_args) == 2:
+            key = "{}.{}".format(list_args[0], list_args[1])
+            objects = storage.all()
+            if key not in objects:
+                print("** no instance found **")
+                return
+            elif len(list_args) == 2 and key in objects:
+                print("** attribute name missing **")
+                return
+        elif len(list_args) == 3:
+            print("** value missing **")
+            return
+        key = "{}.{}".format(list_args[0], list_args[1])
+        objects = storage.all()
+        setattr(objects[key], list_args[2], list_args[3])
+        storage.save()
 
 if __name__ == '__main__':
     hb = HBNBCommand
