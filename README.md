@@ -62,10 +62,11 @@ Python Unit Tests
 *Run hbnb(interactively): ./console and enter commands
 *Run hbnb(non-interactively): echo "<command>" | ./console.py
 
-<h1>Example Usage book</h1>
+Example Usage book
 Interative Mode:
 
-(hbnb) help
+<p>(hbnb) help</p>
+
 Documented commands (type help <topic>):
 ========================================
 EOF  all  create  destroy  help  quit  show  update
