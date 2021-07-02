@@ -66,7 +66,6 @@ Example Usage book
 Interative Mode:
 
 <p>(hbnb) help</p>
-
 Documented commands (type help <topic>):
 ========================================
 EOF  all  create  destroy  help  quit  show  update
