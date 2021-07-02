@@ -2,7 +2,12 @@
 
 <p align="center"><img src="https://i.pinimg.com/originals/b7/96/7a/b7967a5072e088986559b57b4ba53c83.jpg"/></p>
 
-Learning Objectives
+<h1>Project Description</h1>
+
+Airbnb Clone is the main project of the second trimester at Holberton School. The aim is to develop an entire web application that simulates the behavior of the Airbnb platform. Starting from the console or command interpreter
+
+
+<h1>Learning Objectives</h1>
 
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 General
@@ -51,3 +56,92 @@ Python Unit Tests
     All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
     All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
     We strongly encourage you to work together on test cases, so that you don’t miss any edge case
+
+<h1>Installation</h1>
+*Clone this repository:https://github.com/giosermon/AirBnB_clone.git
+*Run hbnb(interactively): ./console and enter commands
+*Run hbnb(non-interactively): echo "<command>" | ./console.py
+
+<h1>Example Usage book</h1>
+Interative Mode:
+
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
+
+(hbnb) all MyModel
+** class doesn't exist **
+(hbnb) show BaseModel
+** instance id missing **
+(hbnb)create BaseModel
+df1ca7e3-a140-4739-b4da-96f87b4e7ee9
+(hbnb)all BaseModel
+["[BaseModel] (df1ca7e3-a140-4739-b4da-96f87b4e7ee9) {'updated_at': datetime.datetime(2020, 2, 19, 22, 49, 0, 939794), 'created_at': datetime.
+datetime(2020, 2, 19, 22, 49, 0, 939700), 'id': 'df1ca7e3-a140-4739-b4da-96f87b4e7ee9'}"]
+(hbnb)show BaseModel df1ca7e3-a140-4739-b4da-96f87b4e7ee9
+[BaseModel] (df1ca7e3-a140-4739-b4da-96f87b4e7ee9) {'updated_at': datetime.datetime(2020, 2, 19, 22, 49, 0, 939794), 'created_at': datetime.datetime(2020, 2, 19, 22, 49, 0, 939700), 'id': 'df1ca7e3-a140-4739-b4da-96f87b4e7ee9'}
+(hbnb) create User
+8cf2405e-2837-4a7c-b824-b12a9a0d89b2
+(hbnb) destroy BaseModel df1ca7e3-a140-4739-b4da-96f87b4e7ee9
+(hbnb) show BaseModel df1ca7e3-a140-4739-b4da-96f87b4e7ee9
+** no instance found **
+(hbnb) quit
+
+<thead>
+<tr>
+<th><strong>File</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>console.py</td>
+<td>Command interpreter.</td>
+</tr>
+<tr>
+<td>base_model.py</td>
+<td>Defines all common attributes/methods for other classes.</td>
+</tr>
+<tr>
+<td>file_storage.py</td>
+<td>A class that serializes instances to a JSON file and deserializes JSON file to instances.</td>
+</tr>
+<tr>
+<td>amenity.py</td>
+<td>A class Amenity that inherits from BaseModel.</td>
+</tr>
+<tr>
+<td>city.py</td>
+<td>A class City that inherits from BaseModel.</td>
+</tr>
+<tr>
+<td>place.py</td>
+<td>A class Place that inherits from BaseModel.</td>
+</tr>
+<tr>
+<td>review.py</td>
+<td>A class Review that inherits from BaseModel.</td>
+</tr>
+<tr>
+<td>state.py</td>
+<td>A class State that inherits from BaseModel.</td>
+</tr>
+<tr>
+<td>user.py</td>
+<td>A class User that inherits from BaseModel.</td>
+</tr>
+<tr>
+<td>tests\</td>
+<td>Contains unittests for the project.</td>
+</tr>
+<tr>
+<td>README.md</td>
+<td>Readme file.</td>
+</tr>
+<tr>
+<td>AUTHORS</td>
+<td>Autors file.</td>
+</tr>
+</tbody>
