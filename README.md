@@ -66,7 +66,6 @@ Python Unit Tests
 Interative Mode:
 
 (hbnb) help
-
 Documented commands (type help <topic>):
 ========================================
 EOF  all  create  destroy  help  quit  show  update
@@ -88,60 +87,3 @@ datetime(2020, 2, 19, 22, 49, 0, 939700), 'id': 'df1ca7e3-a140-4739-b4da-96f87b4
 (hbnb) show BaseModel df1ca7e3-a140-4739-b4da-96f87b4e7ee9
 ** no instance found **
 (hbnb) quit
-
-<thead>
-<tr>
-<th><strong>File</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>console.py</td>
-<td>Command interpreter.</td>
-</tr>
-<tr>
-<td>base_model.py</td>
-<td>Defines all common attributes/methods for other classes.</td>
-</tr>
-<tr>
-<td>file_storage.py</td>
-<td>A class that serializes instances to a JSON file and deserializes JSON file to instances.</td>
-</tr>
-<tr>
-<td>amenity.py</td>
-<td>A class Amenity that inherits from BaseModel.</td>
-</tr>
-<tr>
-<td>city.py</td>
-<td>A class City that inherits from BaseModel.</td>
-</tr>
-<tr>
-<td>place.py</td>
-<td>A class Place that inherits from BaseModel.</td>
-</tr>
-<tr>
-<td>review.py</td>
-<td>A class Review that inherits from BaseModel.</td>
-</tr>
-<tr>
-<td>state.py</td>
-<td>A class State that inherits from BaseModel.</td>
-</tr>
-<tr>
-<td>user.py</td>
-<td>A class User that inherits from BaseModel.</td>
-</tr>
-<tr>
-<td>tests\</td>
-<td>Contains unittests for the project.</td>
-</tr>
-<tr>
-<td>README.md</td>
-<td>Readme file.</td>
-</tr>
-<tr>
-<td>AUTHORS</td>
-<td>Autors file.</td>
-</tr>
-</tbody>
