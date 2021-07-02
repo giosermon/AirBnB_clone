@@ -63,27 +63,61 @@ Python Unit Tests
 *Run hbnb(non-interactively): echo "<command>" | ./console.py
 
 Example Usage book
+    $ ./console.py
+    (hbnb) help
+
+    Documented commands (type help <topic>):
+    ========================================
+    EOF  help  quit
+
+    (hbnb)
+    (hbnb)
+    (hbnb) quit
+    $
+
 Interative Mode:
+Run hbnb(non-interactively): echo "<command>" | ./console.py
 
-<p>(hbnb) help</p>
-Documented commands (type help <topic>):
-========================================
-EOF  all  create  destroy  help  quit  show  update
+File Descriptions
 
-(hbnb) all MyModel
-** class doesn't exist **
-(hbnb) show BaseModel
-** instance id missing **
-(hbnb)create BaseModel
-df1ca7e3-a140-4739-b4da-96f87b4e7ee9
-(hbnb)all BaseModel
-["[BaseModel] (df1ca7e3-a140-4739-b4da-96f87b4e7ee9) {'updated_at': datetime.datetime(2020, 2, 19, 22, 49, 0, 939794), 'created_at': datetime.
-datetime(2020, 2, 19, 22, 49, 0, 939700), 'id': 'df1ca7e3-a140-4739-b4da-96f87b4e7ee9'}"]
-(hbnb)show BaseModel df1ca7e3-a140-4739-b4da-96f87b4e7ee9
-[BaseModel] (df1ca7e3-a140-4739-b4da-96f87b4e7ee9) {'updated_at': datetime.datetime(2020, 2, 19, 22, 49, 0, 939794), 'created_at': datetime.datetime(2020, 2, 19, 22, 49, 0, 939700), 'id': 'df1ca7e3-a140-4739-b4da-96f87b4e7ee9'}
-(hbnb) create User
-8cf2405e-2837-4a7c-b824-b12a9a0d89b2
-(hbnb) destroy BaseModel df1ca7e3-a140-4739-b4da-96f87b4e7ee9
-(hbnb) show BaseModel df1ca7e3-a140-4739-b4da-96f87b4e7ee9
-** no instance found **
-(hbnb) quit
+console.py - Contains the entry point of command interpreter. Commands that this console accepts:
+
+    EOF - exits console
+    quit - exits console
+    emptyline - overwrites default emptyline method and does nothing
+    create - Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id
+    destroy - Deletes an instance based on the class name and id. Save the change into the JSON file.
+    show - Prints the string representation of an instance based on the class name and id.
+    all - Prints all string representation of all instances based or not on the class name.
+    update - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
+    count - Retrieves the number of instances of a class.
+    precmd - Parse the commad with the format <class name>.command to send it to the way that methods receive it.
+
+models/ --- Directory that contains main classes:
+
+base_model.py - The BaseModel class is main class where where other classes will be derived. This class gives the main attributes like id, created and updated time when a instance occurs.
+
+Methods inside this class:
+
+    def __init__(self, *args, **kwargs) - Initialization of the BaseModel class
+    def __str__(self) - String representation of the BaseModel class
+    def save(self) - Updates the attribute updated_at with the current datetime
+    def to_dict(self) - returns a dictionary containing all keys and values of the instance
+
+Classes inherited from Base Model:
+
+    amenity.py
+    city.py
+    place.py
+    review.py
+    state.py
+    user.py
+
+/models/engine --- Directory that contains File Storage class that manages JSON serialization and deserialization :
+
+file_storage.py - serializes instances to a JSON file & deserializes back to instances
+
+    def all(self) - returns the dictionary __objects
+    def new(self, obj) - sets in __objects the obj with key .id
+    def save(self) - serializes __objects to the JSON file (path: __file_path)
+    def reload(self) - deserializes the JSON file to __objects
