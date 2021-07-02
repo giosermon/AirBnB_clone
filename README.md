@@ -85,12 +85,12 @@ console.py - Contains the entry point of command interpreter. Commands that this
     quit - exits console
     emptyline - overwrites default emptyline method and does nothing
     create - Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id
-    destroy - Deletes an instance based on the class name and id. Save the change into the JSON file.
-    show - Prints the string representation of an instance based on the class name and id.
+    destroy - Deletes and instance base on the class name and id
+    show - Prints all string representation of all instances based or not on the class name.
     all - Prints all string representation of all instances based or not on the class name.
-    update - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
+    update - Updates an instance based on the class name and id by adding or updating attribute
 
-    models/ --- Directory that contains main classes:
+    models - Directory that contains main classes:
 
     base_model.py - The BaseModel class is main class where where other classes will be derived. This class gives the main attributes like id, created and updated time when a instance occurs.
 
@@ -101,6 +101,11 @@ console.py - Contains the entry point of command interpreter. Commands that this
     def save(self) - Updates the attribute updated_at with the current datetime
     def to_dict(self) - returns a dictionary containing all keys and values of the instance
 
+Public Instance Attributes:
+    id
+    created_at
+    updated_at
+
 Classes inherited from Base Model:
 
     amenity.py
@@ -110,10 +115,11 @@ Classes inherited from Base Model:
     state.py
     user.py
 
-/models/engine --- Directory that contains File Storage class that manages JSON serialization and deserialization :
+/models/engine - Directory that contains File Storage class that manages JSON serialization and deserialization :
 
 file_storage.py - serializes instances to a JSON file & deserializes back to instances
 
+Public Instance Methods:
     def all(self) - returns the dictionary __objects
     def new(self, obj) - sets in __objects the obj with key .id
     def save(self) - serializes __objects to the JSON file (path: __file_path)
