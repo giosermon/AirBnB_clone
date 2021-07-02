@@ -59,8 +59,7 @@ Python Unit Tests
 
 <h1>Installation</h1>
 *Clone this repository:https://github.com/giosermon/AirBnB_clone.git
-*Run hbnb(interactively): ./console and enter commands
-*Run hbnb(non-interactively): echo "<command>" | ./console.py
+*Run hbnb(interactively): ./console and enter
 
 Example Usage book
     $ ./console.py
@@ -90,14 +89,12 @@ console.py - Contains the entry point of command interpreter. Commands that this
     show - Prints the string representation of an instance based on the class name and id.
     all - Prints all string representation of all instances based or not on the class name.
     update - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
-    count - Retrieves the number of instances of a class.
-    precmd - Parse the commad with the format <class name>.command to send it to the way that methods receive it.
 
-models/ --- Directory that contains main classes:
+    models/ --- Directory that contains main classes:
 
-base_model.py - The BaseModel class is main class where where other classes will be derived. This class gives the main attributes like id, created and updated time when a instance occurs.
+    base_model.py - The BaseModel class is main class where where other classes will be derived. This class gives the main attributes like id, created and updated time when a instance occurs.
 
-Methods inside this class:
+    Methods inside this class:
 
     def __init__(self, *args, **kwargs) - Initialization of the BaseModel class
     def __str__(self) - String representation of the BaseModel class
@@ -121,3 +118,25 @@ file_storage.py - serializes instances to a JSON file & deserializes back to ins
     def new(self, obj) - sets in __objects the obj with key .id
     def save(self) - serializes __objects to the JSON file (path: __file_path)
     def reload(self) - deserializes the JSON file to __objects
+
+Examples of use
+
+    vagrantAirBnB_clone$./console.py
+    (hbnb) help
+
+    Documented commands (type help <topic>):
+    ========================================
+    EOF  all  create  destroy  help  quit  show  update
+
+    (hbnb) all MyModel
+    ** class doesn't exist **
+    (hbnb) create BaseModel
+    7da56403-cc45-4f1c-ad32-bfafeb2bb050
+    (hbnb) all BaseModel
+    [[BaseModel] (7da56403-cc45-4f1c-ad32-bfafeb2bb050) {'updated_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772167), 'id': '7da56403-cc45-4f1c-ad32-bfafeb2bb050', 'created_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772123)}]
+    (hbnb) show BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
+    [BaseModel] (7da56403-cc45-4f1c-ad32-bfafeb2bb050) {'updated_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772167), 'id': '7da56403-cc45-4f1c-ad32-bfafeb2bb050', 'created_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772123)}
+    (hbnb) destroy BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
+    (hbnb) show BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
+    ** no instance found **
+    (hbnb) quit
