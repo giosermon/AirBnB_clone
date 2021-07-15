@@ -140,40 +140,51 @@ class HBNBCommand(cmd.Cmd):
         setattr(objects[key], list_args[2], list_args[3])
         storage.save()
         
-    def class_defa(self, cls_name, args):
-        """[Wrapper function for <class name>.action()]"""
-        if args[: 6] == '.all()':
-            self.do_all(cls_name)
-        elif args[: 7] == '.count(':
-            self.count(cls_name)
-        elif args[: 6] == '.show(':
-            self.do_show(cls_name + ' ' + args[7: -2])
-        elif args[: 9] == '.destroy(':
-            self.do_destroy(cls_name + ' ' + args[10: -2])
-        elif args[: 8] == '.update(':
-            if '{' in args and '}' in args:
-                new_arg = args[8: -1].split('{')
-                new_arg[1] = '{' + new_arg[1]
-            else:
-                new_arg = args[8: -1].split(',')
-            if len(new_arg) == 3:
-                new_arg = " ".join(new_arg)
-                new_arg = new_arg.replace("\"", "")
-                new_arg = new_arg.replace("  ", " ")
-                self.do_update(cls_name + ' ' + new_arg)
-            elif len(new_arg) == 2:
-                try:
-                    dict = eval(new_arg[1])
-                except:
-                    return
-                for j in dict.keys():
-                    self.do_update(cls_name + ' ' +
-                                   new_arg[0][1:-3] + ' ' +
-                                   str(j) + ' ' + str(dict[j]))
-            else:
-                return
+    def exect(self, line):
+        """Method to run same commands as class.method"""
+        # Make a copy of line
+        cp = line[:]
+        cp2 = line.split('.', 1)
+        if len(cp2) < 2:
+            return cp
         else:
-            print("Not a valid command")
+            count1, count2 = cp.count(')'), cp.count('(')
+            endp_p = len(cp)-1
+
+            if count1 != 1 or count2 != 1 or ')' != cp[endp_p]:
+                return cp
+
+            idx = cp.index('(')
+            if cp[idx-1].isalpha() is False:
+                return cp
+
+            mycls = cp2[0]
+
+            cp2[1] = cp2[1].replace('(', ', ')
+
+            cp2[1] = cp2[1].replace(')', '')
+
+
+            mycmd = cp2[1].split(', ', 1)[0]
+            count1, count2 = cp2[1].count('}'), cp2[1].count('{')
+            endp_p = len(cp2[1])-1
+            if mycmd == "update":
+                myargs = cp2[1].split(', ', 1)[1]
+                if count1 == 1 and count2 == 1 and '}' == cp2[1][endp_p]:
+
+                    myargs = myargs.split(', ', 1)
+
+                    myid = myargs[0]
+                    mydict = eval(myargs[1])
+                    for key, value in mydict.items():
+                        ucmd = mycls+' '+myid+' '+key+' '+'\"'+str(value)+'\"'
+                        self.do_update(ucmd)
+                    return " "
+
+            mycmd += ' '+mycls+' '+cp2[1].split(', ', 1)[1]
+            mycmd = mycmd.replace(',', '')
+
+            return mycmd
 
 
 if __name__ == '__main__':
